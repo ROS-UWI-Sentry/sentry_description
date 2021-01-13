@@ -75,10 +75,34 @@
   </collision>
 </link>
 
-<!-- Joint between Left wheel and Base Link -->
+<!-- Left Motor Link -->
+<link name="left_motor">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="1"/>
+    <inertia ixx="0.001218" ixy="0.0" ixz="0.0" iyy="0.000635" iyz="0.0" izz="0.000635"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://sentry_description/meshes/motor.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://sentry_description/meshes/motor.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- JOINTS -->
 <!-- The origin of the joint is used as the origin of that component, when positioning above -->
+
+<!-- Joint between Left wheel and Base Link -->
 <joint name="left_wheel_joint" type="continuous">
-  <origin rpy="0 0 0" xyz="-0.18650 0 0.07260"/>
+  <origin rpy="0 0 0" xyz="-0.18650 0 0.11460"/>
   <parent link="base_link"/>
   <child link="left_wheel"/>
   <axis xyz="1.0 0.0 0.0"/>
@@ -86,13 +110,21 @@
   <joint_properties damping="1.0" friction="1.0"/>
 </joint>
 
+<!-- Joint between right wheel and Base Link -->
 <joint name="right_wheel_joint" type="continuous">
-  <origin rpy="0 0 0" xyz="0.18650 0 0.07260"/>
+  <origin rpy="0 0 0" xyz="0.18650 0 0.11460"/>
   <parent link="base_link"/>
   <child link="right_wheel"/>
   <axis xyz="1.0 0.0 0.0"/>
   <limit effort="10000" velocity="1000"/>
   <joint_properties damping="1.0" friction="1.0"/>
+</joint>
+
+<!-- Joint between Left motor and Base Link -->
+<joint name="left_motor_base_joint" type="fixed">
+  <origin rpy="0 0 0" xyz="-0.80779 0.92779 0.93831"/>
+  <parent link="base_link"/>
+  <child link="left_motor"/>
 </joint>
 
 </robot>
