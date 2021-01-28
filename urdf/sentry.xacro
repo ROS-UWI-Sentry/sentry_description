@@ -120,4 +120,10 @@
   <joint_properties damping="1.0" friction="1.0"/>
 </joint>
 
+<joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser_sensor"/>
+    <origin rpy= "0 0 0" xyz="0 0 "/>
+  </joint>
+
 </robot>
