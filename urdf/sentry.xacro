@@ -75,12 +75,33 @@
   </collision>
 </link>
 
+<link name="laser_sensor">
+  <inertial>
+    <!--<origin rpy="0 0 0" xyz="0.16605823931257102 -0.20000099435655025 0.0635739775901992"/>-->
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="1"/>
+    <inertia ixx="0.001218" ixy="0.0" ixz="0.0" iyy="0.000635" iyz="0.0" izz="0.000635"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://sentry_description/CAD/parts/Lidar/ydlidar_x4 v2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://sentry_description/CAD/parts/Lidar/ydlidar_x4 v2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
 <!-- JOINTS -->
 <!-- The origin of the joint is used as the origin of that component, when positioning above -->
 
 <!-- Joint between Left wheel and Base Link -->
 <joint name="left_wheel_joint" type="continuous">
-  <origin rpy="0 0 0" xyz="-0.18650 0 0.114"/>
+  <origin rpy="0 0 0" xyz="-0.18650 0 0.114"/> 
   <parent link="base_link"/>
   <child link="left_wheel"/>
   <axis xyz="1.0 0.0 0.0"/>
