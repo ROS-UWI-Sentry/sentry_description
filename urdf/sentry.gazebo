@@ -52,4 +52,12 @@
   <selfCollide>false</selfCollide>
 </gazebo>
 
+<gazebo reference="laser_sensor">
+    <sensor type="ray" name="sensor1">
+       
+      
+        </plugin>
+    </sensor>
+</gazebo>
+
 </robot>
