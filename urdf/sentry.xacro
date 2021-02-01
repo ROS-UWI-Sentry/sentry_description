@@ -123,7 +123,7 @@
 <joint name="lidar_joint" type="fixed">
     <parent link="base_link"/>
     <child link="laser_sensor"/>
-    <origin rpy= "0 0 0" xyz="0 0 1.5"/>
+    <origin rpy= "0 0 0" xyz="0 -0.22 1.5"/>
   </joint>
 
 </robot>
