@@ -55,7 +55,7 @@
 <gazebo reference="laser_sensor">
     <sensor type="ray" name="lidar_sensor">
       <always_on>true</always_on>
-      <pose>0 0 -0.004645 1.5707 0 0</pose>
+      <pose>0 -0.22 1.5 1.5707 0 0</pose>
       <visualize>true</visualize>
       <update_rate>30</update_rate>
       <ray>
@@ -63,8 +63,8 @@
           <horizontal>
             <samples>360</samples>
             <resolution>1</resolution>
-            <min_angle>-0.53529248</min_angle>
-            <max_angle>0.18622663</max_angle>
+            <min_angle>-1.57</min_angle>
+            <max_angle>1.57</max_angle>
           </horizontal>
           <vertical>
             <samples>360</samples>
@@ -75,7 +75,7 @@
         </scan>
         <range>
           <min>0.05</min>
-          <max>70</max>
+          <max>10</max>
           <resolution>0.02</resolution>
         </range>
         <noise>
@@ -84,12 +84,11 @@
           <stddev>0.01</stddev>
         </noise>
       </ray>
-      <plugin name="gazebo_ros_laser" filename="libgazebo_ros__laser.so">
-        <topicName>/lidar/sensor</topicName>
+      <!--<plugin name="gazebo_ros_laser" filename="libgazebo_ros__laser.so"> -->
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName> </topicName>
         <frameName>laser_sensor</frameName>
-      </plugin>
-    
+      </plugin>    
     </sensor>
 </gazebo>
-
 </robot>
