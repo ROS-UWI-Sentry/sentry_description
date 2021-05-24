@@ -5,6 +5,7 @@
 <!-- Transmission, currently not used -->
 <!--<xacro:include filename="$(find sentry_description)/urdf/sentry.trans" />-->
 <xacro:include filename="$(find sentry_description)/urdf/sentry.gazebo" />
+<xacro:include filename="/home/krishan/catkin_ws/src/zed-ros-wrapper/zed_wrapper/urdf/zed_descr.urdf.xacro"/>
 
 <!--  Base link -->
 <!-- Combine as much bodies as possible into the base_link, this will reduce the complexity of the design -->
@@ -77,27 +78,7 @@
   </collision>
 </link>
 
-<link name="laser_sensor">
-  <inertial>
-    <!--<origin rpy="0 0 0" xyz="0.16605823931257102 -0.20000099435655025 0.0635739775901992"/>-->
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <mass value="0.5"/>
-    <inertia ixx="0.001218" ixy="0.0" ixz="0.0" iyy="0.000635" iyz="0.0" izz="0.000635"/>
-  </inertial>
-  <visual>
-    <origin rpy= "0 0 0" xyz="0 0.22 1.5"/>
-    <geometry>
-      <mesh filename="package://sentry_description/CAD/parts/Lidar/ydlidar_x4 v2.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <geometry>
-      <mesh filename="package://sentry_description/CAD/parts/Lidar/ydlidar_x4 v2.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
+
 <!-- JOINTS -->
 <!-- The origin of the joint is used as the origin of that component, when positioning above -->
 
@@ -122,9 +103,9 @@
   <joint_properties damping="1.0" friction="1.0"/>
 </joint>
 
-<joint name="lidar_joint" type="fixed">
+<joint name="zed_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="laser_sensor"/>s
+    <child link="camera_base_link"/>s
     <origin rpy= "0 0 0" xyz="0 0.22 1.5"/>
 </joint>
 <joint name="dummy_joint" type="fixed">
