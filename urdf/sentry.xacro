@@ -11,35 +11,37 @@
   <!-- Combine as much bodies as possible into the base_link, this will reduce the complexity of the design -->
 
 
-      <!-- Arguments -->
+  <!-- Arguments -->
 
 
-      <xacro:arg name="camera_name"   default="zed" />
-      <xacro:arg name="camera_model"  default="zed" />
-      <xacro:arg name="base_frame"    default="camera_base_link" />
-      <xacro:arg name="cam_pos_x"     default="0.0" />
-      <xacro:arg name="cam_pos_y"     default="0.0" />
-      <xacro:arg name="cam_pos_z"     default="0.0" />
-      <xacro:arg name="cam_roll"      default="0.0" />
-      <xacro:arg name="cam_pitch"     default="0.0" />
-      <xacro:arg name="cam_yaw"       default="0.0" />
+  <xacro:arg name="camera_name"   default="zed" />
+  <xacro:arg name="camera_model"  default="zed" />
+  <xacro:arg name="base_frame"    default="camera_base_link" />
+  <xacro:arg name="cam_pos_x"     default="0.0" />
+  <xacro:arg name="cam_pos_y"     default="0.0" />
+  <xacro:arg name="cam_pos_z"     default="0.0" />
+  <xacro:arg name="cam_roll"      default="0.0" />
+  <xacro:arg name="cam_pitch"     default="0.0" />
+  <xacro:arg name="cam_yaw"       default="0.0" />
 
-      <!-- Properties -->
-      <xacro:property name="M_PI"     value="3.1415926535897931" />
-      <xacro:property name="model"    value="$(arg camera_model)" />
+  <!-- Properties -->
+  <xacro:property name="M_PI"     value="3.1415926535897931" />
+  <xacro:property name="model"    value="$(arg camera_model)" />
 
-      <xacro:if value="${model == 'zed'}">
-          <xacro:property name="baseline" value="0.12" />
-      </xacro:if>
-      <xacro:if value="${model == 'zedm'}">
-          <xacro:property name="baseline" value="0.06" />
-      </xacro:if>
-      <xacro:if value="${model == 'zed2'}">
-          <xacro:property name="baseline" value="0.12" />
-      </xacro:if>
+  <xacro:if value="${model == 'zed'}">
+      <xacro:property name="baseline" value="0.12" />
+  </xacro:if>
+  <xacro:if value="${model == 'zedm'}">
+      <xacro:property name="baseline" value="0.06" />
+  </xacro:if>
+  <xacro:if value="${model == 'zed2'}">
+      <xacro:property name="baseline" value="0.12" />
+  </xacro:if>
 
-  <!-- base_link -->
-      <link name="$(arg base_frame)" />
+<!-- base_link -->
+  <link name="$(arg base_frame)" />
+
+  <link name="dummy_link"/>
 
   <link name="base_link">
     <inertial>
@@ -62,7 +64,7 @@
     </collision>
   </link>
 
-  
+  https://github.com/stereolabs/zed-ros-wrapper/issues/447
 
   <!-- Wheel Link -->
   <!-- Both wheels can be refferenced from the same STL -->
@@ -104,31 +106,31 @@
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
+      <geometry>https://github.com/stereolabs/zed-ros-wrapper/issues/447
         <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
 
 
-  
 
-  <!-- Camera Center -->
-    <joint name="$(arg camera_name)_camera_center_joint" type="fixed">
-        <parent link="$(arg base_frame)"/>
-        <child link="$(arg camera_name)_camera_center"/>
-        <origin xyz="$(arg cam_pos_x) $(arg cam_pos_y) $(arg cam_pos_z)" rpy="$(arg cam_roll) $(arg cam_pitch) $(arg cam_yaw)" />
-    </joint>
 
-    <link name="$(arg camera_name)_camera_center">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <mesh filename="package://zed_wrapper/urdf/models/${model}.stl" />
-            </geometry>
-            <material name="${model}_mat" />
-        </visual>
-    </link>
+<!-- Camera Center -->
+  <joint name="$(arg camera_name)_camera_center_joint" type="fixed">
+      <parent link="$(arg base_frame)"/>
+      <child link="$(arg camera_name)_camera_center"/>
+      <origin xyz="$(arg cam_pos_x) $(arg cam_pos_y) $(arg cam_pos_z)" rpy="$(arg cam_roll) $(arg cam_pitch) $(arg cam_yaw)" />
+  </joint>
+
+  <link name="$(arg camera_name)_camera_center">
+      <visual>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+              <mesh filename="package://zed_wrapper/urdf/models/${model}.stl" />
+          </geometry>
+          <material name="${model}_mat" />
+      </visual>
+  </link>
 
 <!-- Left Camera -->
   <joint name="$(arg camera_name)_left_camera_joint" type="fixed">
@@ -225,9 +227,12 @@
 
   <joint name="zed_joint" type="fixed">
       <parent link="base_link"/>
-      <child link="camera_base_link"/>s
+      <child link="$(arg camera_name)_camera_center"/>
       <origin rpy= "0 0 0" xyz="0 0 1.5"/>
   </joint>
+
+
+
 
 </robot>
 
