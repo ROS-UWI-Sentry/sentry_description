@@ -53,22 +53,22 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- base_link -->
     <link name="$(arg base_frame)">
         <inertial>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <mass value="1"/>
-        <inertia ixx="0.0395416666667" ixy="0" ixz="0" iyy="0.106208333333" iyz="0" izz="0.106208333333"/>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <mass value="1"/>
+          <inertia ixx="0.0395416666667" ixy="0" ixz="0" iyy="0.106208333333" iyz="0" izz="0.106208333333"/>
         </inertial>
         <visual>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-            <mesh filename="package://sentry_description/CAD/parts/base-link/base_link_no wheels v2.stl" scale="0.001 0.001 0.001"/>
-        </geometry>
-        <material name="silver"/>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <geometry>
+              <mesh filename="package://sentry_description/CAD/parts/base-link/base_link_no wheels v2.stl" scale="0.001 0.001 0.001"/>
+          </geometry>
+          <material name="silver"/>
         </visual>
         <collision>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-            <mesh filename="package://sentry_description/CAD/parts/base-link/base_link_no wheels v2.stl" scale="0.001 0.001 0.001"/>
-        </geometry>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <geometry>
+              <mesh filename="package://sentry_description/CAD/parts/base-link/base_link_no wheels v2.stl" scale="0.001 0.001 0.001"/>
+          </geometry>
         </collision>
     </link>
 
@@ -78,6 +78,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <parent link="$(arg base_frame)"/>
         <child link="$(arg camera_name)_camera_center"/>
         <origin xyz="$(arg cam_pos_x) $(arg cam_pos_y) $(arg cam_pos_z)" rpy="$(arg cam_roll) $(arg cam_pitch) $(arg cam_yaw)" />
+        <origin rpy="0 0 0" xyz="0 0 0.1"/>
     </joint>
 
     <link name="$(arg camera_name)_camera_center">
@@ -171,21 +172,21 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <visual>
       <origin rpy="0 0 0" xyz="-0.18650 0 0.114"/>
       <geometry>
-        <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v7.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="silver"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v7.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
 
   <link name="right_wheel">
     <inertial>
-      <!--<origin rpy="0 0 0" xyz="0.16605823931257102 -0.20000099435655025 0.0635739775901992"/>-->
+      <!--<origin rpy="0 0 0" xyz="0.http://wiki.ros.org/rtabmap_ros/Tutorials/SetupOnYourRobot16605823931257102 -0.20000099435655025 0.0635739775901992"/>-->
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="1"/>
       <inertia ixx="0.001218" ixy="0.0" ixz="0.0" iyy="0.000635" iyz="0.0" izz="0.000635"/>
@@ -193,14 +194,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <visual>
       <origin rpy="0 0 3.14159" xyz="0.18650 0 0.114"/>
       <geometry>
-        <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v7.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="silver"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v7.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
