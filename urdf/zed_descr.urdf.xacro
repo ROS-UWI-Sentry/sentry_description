@@ -4,7 +4,7 @@
 
 <!-- Includes -->
     <xacro:include filename="$(find zed_wrapper)/urdf/include/materials.urdf.xacro" />
-
+    <xacro:include filename="$(find sentry_description)/urdf/sentry.gazebo"/>
     <!-- Arguments -->
 
 
@@ -42,14 +42,14 @@
         <visual>
           <origin rpy="0 0 0" xyz="0 0 0"/>
           <geometry>
-              <mesh filename="package://sentry_description/CAD/parts/base-link/base_link_no wheels v2.stl" scale="0.001 0.001 0.001"/>
+              <mesh filename="package://sentry_description/CAD/parts/assembly/Assembly v38.stl" scale="0.001 0.001 0.001"/>
           </geometry>
           <material name="silver"/>
         </visual>
         <collision>
           <origin rpy="0 0 0" xyz="0 0 0"/>
           <geometry>
-              <mesh filename="package://sentry_description/CAD/parts/base-link/base_link_no wheels v2.stl" scale="0.001 0.001 0.001"/>
+              <mesh filename="package://sentry_description/CAD/parts/assembly/Assembly v38.stl" scale="0.001 0.001 0.001"/>
           </geometry>
         </collision>
     </link>
@@ -60,7 +60,7 @@
         <parent link="$(arg base_frame)"/>
         <child link="$(arg camera_name)_camera_center"/>
         <!--<origin xyz="$(arg cam_pos_x) $(arg cam_pos_y) $(arg cam_pos_z)" rpy="$(arg cam_roll) $(arg cam_pitch) $(arg cam_yaw)" />-->
-        <origin rpy="0 0 0" xyz="0 0 1.5"/>
+        <origin rpy="0 1.5708 1.5708" xyz="0 0 0"/>
     </joint>
 
     <link name="$(arg camera_name)_camera_center">
@@ -143,7 +143,7 @@
     </xacro:if>
 
     <!-- Wheel Link -->
-  <!-- Both wheels can be refferenced from the same STL -->
+  <!-- Both wheels can be referenced from the same STL -->
   <link name="left_wheel">
     <inertial>
       <!--<origin rpy="0 0 0" xyz="-0.16605823931256913 -0.20000099435655025 0.0635760224098007"/>-->
@@ -154,42 +154,43 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v7.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://sentry_description/CAD/parts/wheel/Tire v5.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="silver"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v7.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://sentry_description/CAD/parts/wheel/Tire v5.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
 
   <link name="right_wheel">
-    <inertial>
-      <!--<origin rpy="0 0 0" xyz="0.http://wiki.ros.org/rtabmap_ros/Tutorials/SetupOnYourRobot16605823931257102 -0.20000099435655025 0.0635739775901992"/>-->
+      <inertial>
+      <!--<origin rpy="0 0 0" xyz="-0.16605823931256913 -0.20000099435655025 0.0635760224098007"/>-->
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="1"/>
-      <inertia ixx="0.001218" ixy="0.0" ixz="0.0" iyy="0.000635" iyz="0.0" izz="0.000635"/>
+      <inertia ixx="0.001218" ixy="-0.0" ixz="0.0" iyy="0.000635" iyz="-0.0" izz="0.000635"/>
     </inertial>
     <visual>
-      <origin rpy="3.14159 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v7.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://sentry_description/CAD/parts/wheel/Tire v5.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="silver"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sentry_description/CAD/parts/wheel/wheel v7.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://sentry_description/CAD/parts/wheel/Tire v5.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
-
+  
+   <!--Wheel Joints-->
   <joint name="left_wheel_joint" type="continuous">
-    <origin rpy="0 0 0" xyz="0 -0.5 0"/> 
+    <origin rpy="0 0 0" xyz="0 -0.1 -0.5"/> 
     <parent link="$(arg base_frame)" />
     <child link="left_wheel"/>
     <axis xyz="1.0 0.0 0.0"/>
@@ -199,7 +200,7 @@
 
   <joint name="right_wheel_joint" type="continuous">
   <!-- yaw set to 3.14159 to flip the wheel and align it properly-->
-    <origin rpy="0 -3.14159 0" xyz="0 0.5 0"/>
+    <origin rpy="0 -0 0" xyz="0 0.1 -0.05"/>
     <parent link="$(arg base_frame)" />
     <child link="right_wheel"/>
     <axis xyz="-1.0 0.0 0.0"/>

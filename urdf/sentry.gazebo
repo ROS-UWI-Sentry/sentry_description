@@ -23,7 +23,7 @@
     </plugin>
 </gazebo>
 
-<gazebo reference="base_link">
+<gazebo reference="$(arg base_frame)">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>

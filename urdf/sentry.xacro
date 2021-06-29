@@ -64,7 +64,7 @@
     </collision>
   </link>
 
-  https://github.com/stereolabs/zed-ros-wrapper/issues/447
+
 
   <!-- Wheel Link -->
   <!-- Both wheels can be refferenced from the same STL -->
