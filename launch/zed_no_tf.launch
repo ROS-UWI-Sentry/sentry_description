@@ -18,8 +18,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
     <!-- Camera Model and Name -->
-    <arg name="camera_name"           default="zed" /> <!-- The name you want -->
-    <arg name="camera_model"          default="zed" /> <!-- 'zed' or 'zedm' or 'zed2' -->
+    <arg name="camera_name"           default="zed2" /> <!-- The name you want -->
+    <arg name="camera_model"          default="zed2" /> <!-- 'zed' or 'zedm' or 'zed2' -->
     <arg name="node_name"             default="zed_node" />
 
     <!-- Load SVO file -->
@@ -48,7 +48,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <!-- ROS URDF description of the ZED -->
     <group if="$(arg publish_urdf)">
-        <param name="$(arg camera_name)_description"
+        <param name="zed_description"
                command="$(find xacro)/xacro '$(find sentry_description)/urdf/zed_descr.urdf.xacro'
                         camera_name:=$(arg camera_name)
                         camera_model:=$(arg camera_model)
@@ -61,10 +61,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                         cam_yaw:=$(arg cam_yaw)"
         />
 
-        <node name="$(arg camera_name)_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" required="true">
-            <remap from="robot_description" to="$(arg camera_name)_description" />
+        <node name="zed_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" required="true">
+            <remap from="robot_description" to="zed_description" />
         </node>
-
     </group>
 
     <node name="$(arg node_name)" pkg="zed_wrapper" type="zed_wrapper_node" output="screen" required="true"><!-- launch-prefix="valgrind" -->
@@ -89,6 +88,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <!-- GPU ID -->
         <param name="general/gpu_id"                    value="$(arg gpu_id)" />
 
-        <param name="coordinate_system"                 value="RIGHT_HANDED_Z_UP_X_FWD" />
+        <!-- Disable TF publishing -->
+        <param name="pos_tracking/publish_tf"            value="false" />
+        <param name="pos_tracking/publish_map_tf"        value="false" />
     </node>
 </launch>
