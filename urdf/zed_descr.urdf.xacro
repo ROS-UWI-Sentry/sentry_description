@@ -60,7 +60,7 @@
         <parent link="$(arg base_frame)"/>
         <child link="$(arg camera_name)_camera_center"/>
         <!--<origin xyz="$(arg cam_pos_x) $(arg cam_pos_y) $(arg cam_pos_z)" rpy="$(arg cam_roll) $(arg cam_pitch) $(arg cam_yaw)" />-->
-        <origin rpy="0 1.5708 1.5708" xyz="3.141592654 0 0"/>
+        <origin rpy="0 0 0" xyz="3.141592654 0 0"/>
     </joint>
 
     <link name="$(arg camera_name)_camera_center">
@@ -190,7 +190,7 @@
   
    <!--Wheel Joints-->
   <joint name="left_wheel_joint" type="continuous">
-    <origin rpy="0 0 0" xyz="-0.25 0 0"/> 
+    <origin rpy="0 0 0" xyz="-0.2 0 0"/> 
     <parent link="$(arg base_frame)" />
     <child link="left_wheel"/>
     <axis xyz="1.0 0.0 0.0"/>
@@ -200,7 +200,7 @@
 
   <joint name="right_wheel_joint" type="continuous">
   <!-- yaw set to 3.14159 to flip the wheel and align it properly-->
-    <origin rpy="0 0 0" xyz="0.25 0 0"/>
+    <origin rpy="0 0 0" xyz="0.2 0 0"/>
     <parent link="$(arg base_frame)" />
     <child link="right_wheel"/>
     <axis xyz="-1.0 0.0 0.0"/>
