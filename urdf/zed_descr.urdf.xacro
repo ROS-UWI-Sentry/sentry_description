@@ -11,9 +11,9 @@
     <xacro:arg name="camera_name"   default="zed" />
     <xacro:arg name="camera_model"  default="zed" />
     <xacro:arg name="base_frame"    default="base_link" />
-    <xacro:arg name="cam_pos_x"     default="0.22" />
+    <xacro:arg name="cam_pos_x"     default="-0.35" />
     <xacro:arg name="cam_pos_y"     default="0.0" />
-    <xacro:arg name="cam_pos_z"     default="1.5768" />
+    <xacro:arg name="cam_pos_z"     default="0.5" />
     <xacro:arg name="cam_roll"      default="0.0" />
     <xacro:arg name="cam_pitch"     default="0.0" />
     <xacro:arg name="cam_yaw"       default="0.0" />
@@ -59,8 +59,8 @@
     <joint name="$(arg camera_name)_camera_center_joint" type="fixed">
         <parent link="$(arg base_frame)"/>
         <child link="$(arg camera_name)_camera_center"/>
-        <!--<origin xyz="$(arg cam_pos_x) $(arg cam_pos_y) $(arg cam_pos_z)" rpy="$(arg cam_roll) $(arg cam_pitch) $(arg cam_yaw)" />-->
-        <origin rpy="0 0 0" xyz="3.141592654 0 0"/>
+        <origin xyz="$(arg cam_pos_x) $(arg cam_pos_y) $(arg cam_pos_z)" rpy="$(arg cam_roll) $(arg cam_pitch) $(arg cam_yaw)" />
+       
     </joint>
 
     <link name="$(arg camera_name)_camera_center">
